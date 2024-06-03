@@ -1,0 +1,6 @@
+bash scripts/adaptpruning_nodistill/llama_2_7b_alpaca_gpt4_preprune.sh
+bash scripts/adaptpruning_nodistill/llama_2_13b_alpaca_gpt4_preprune.sh
+bash scripts/lora/llama_2_7b_alpaca_gpt4.sh
+bash scripts/lora/llama_2_13b_alpaca_gpt4.sh
+bash scripts/lora/llama_7b_alpaca_cleaned.sh
+bash scripts/lora/llama_13b_alpaca_cleaned.sh

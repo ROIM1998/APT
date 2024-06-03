@@ -1,0 +1,17 @@
+**/.vscode/**
+**/__pycache__/**
+
+*output
+*output/
+all_res/
+**/*.xlsx
+*-profile.txt
+# log files on slurm
+**/*.log 
+**/*.out
+legacy_scripts
+legacy_scripts/**
+
+**/*backup*
+data
+data/**
