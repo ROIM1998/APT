@@ -6,11 +6,24 @@ from utils.utils import *
 from datasets import load_metric
 from torch.utils.data import DataLoader
 from utils.qa_utils import postprocess_qa_predictions
-from glue import avg_seq_length
 from dataclasses import dataclass
 
 IGNORE_INDEX = -100
 GLUE_TASKS = set(["cola", "sst2", "mrpc", "stsb", "qqp", "mnli", "qnli", "rte"])
+
+def avg_seq_length(task_name):
+    # Dev set
+    TASK_TO_SEQ_LEN = {
+        "stsb": 31.47,
+        "mrpc": 53.24,
+        "rte": 64.59,
+        "sst2": 25.16,
+        "qqp": 30.55,
+        "qnli": 50.97,
+        "cola": 11.67,
+        "mnli": 39.05,
+    }
+    return TASK_TO_SEQ_LEN[task_name]
 
 @dataclass
 class DataCollatorForSupervisedDataset(object):
@@ -57,7 +70,7 @@ def build_trainer(data_args, training_args, model, tokenizer, train_dataset=None
     elif data_args.task_name is not None and data_args.task_name in GLUE_TASKS:
         label2id = model.label2id if hasattr(model, 'label2id') else None
         # Get the metric function
-        metric = load_metric("./glue_metric.py", data_args.task_name)
+        metric = load_metric("glue", data_args.task_name)
         # You can define your custom compute_metrics function. It takes an `EvalPrediction` object (a namedtuple with a
         # predictions and label_ids field) and has to return a dictionary string to float.
         def compute_metrics(p: EvalPrediction):

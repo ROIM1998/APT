@@ -24,7 +24,7 @@ from trainer.trainer_seq2seq_minus import MinusSeq2SeqTrainer
 from args import MinusTrainingArguments
 from loralib.layers import LoRALayer
 from models import build_model
-from glue import avg_seq_length
+from utils import avg_seq_length
 
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 logger = logging.getLogger(__name__)
@@ -95,7 +95,7 @@ def main():
 
     # Get the metric function
     if data_args.task_name is not None:
-        metric = load_metric("./glue_metric.py", data_args.task_name, experiment_id='elastictuning' + data_args.task_name + str(time.time()))
+        metric = load_metric("glue", data_args.task_name, experiment_id='elastictuning' + data_args.task_name + str(time.time()))
     else:
         metric = load_metric("accuracy", experiment_id='elastictuning' + data_args.task_name + str(time.time()))
     # You can define your custom compute_metrics function. It takes an `EvalPrediction` object (a namedtuple with a

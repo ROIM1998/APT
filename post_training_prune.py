@@ -16,7 +16,7 @@ from models import build_model
 from prune import build_scorer, BetterFisherPruner
 from torch.utils.data import Subset
 from utils.fisher_utils.efficiency.param import *
-from glue import avg_seq_length
+from utils import avg_seq_length
 
 def main():
     parser = HfArgumentParser(

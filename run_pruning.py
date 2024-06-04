@@ -5,7 +5,7 @@ import torch
 
 from tqdm import tqdm
 from datasets import load_metric
-from glue import avg_seq_length
+from utils import avg_seq_length
 from transformers import HfArgumentParser, TrainingArguments, DataCollatorWithPadding
 from torch.utils.data import DataLoader, RandomSampler
 from args import AdditionalArguments, DataTrainingArguments
@@ -46,26 +46,6 @@ if __name__ == '__main__':
     parser = HfArgumentParser(
         (ModelArguments, DataTrainingArguments, TrainingArguments, AdditionalArguments)
     )
-    # sys.argv = ['run_pruning.py',
-    #         '--output_dir',
-    #         './output',
-    #         '--model_name_or_path',
-    #         # 'output/roberta_lora_mnli/checkpoint-36500',
-    #         'output/roberta_mnli/checkpoint-36500',
-    #         '--task_name',
-    #         'mnli',
-    #         '--do_train',
-    #         '--do_eval',
-    #         '--max_seq_length',
-    #         '128',
-    #         '--per_device_train_batch_size',
-    #         '32',
-    #         '--per_device_eval_batch_size',
-    #         '32',
-    #         # '--apply_lora'
-    #         '--prune_mode',
-    #         'fisher',
-    #         ]
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script and it's the path to a json file,
         # let's parse it to get our arguments.
@@ -101,7 +81,7 @@ if __name__ == '__main__':
 
     # Get the metric function
     if data_args.task_name is not None:
-        metric = load_metric("./glue_metric.py", data_args.task_name)
+        metric = load_metric("glue", data_args.task_name)
     else:
         metric = load_metric("accuracy")
 
