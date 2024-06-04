@@ -1,3 +1,7 @@
+# This file contains code derived from [CoFiPruning](https://github.com/princeton-nlp/CoFiPruning),
+# originally developed by Princeton-NLP and released under the MIT-License.
+# Modifications were made to adapt to the current project's context.
+
 import logging
 import math
 import torch

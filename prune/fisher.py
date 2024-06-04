@@ -1,3 +1,7 @@
+# This file contains code derived from [Mask-Tuning](https://github.com/WoosukKwon/retraining-free-pruning),
+# originally developed by Woosuk Kwon.
+# Modifications were made to adapt to the current project's context.
+
 import torch
 from tqdm import tqdm
 
